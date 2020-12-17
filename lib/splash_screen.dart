@@ -22,7 +22,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-
+    super.initState();
     Firebase.initializeApp();
 
     Timer(const Duration(milliseconds: 2000), () async {
@@ -90,7 +90,6 @@ class _SplashScreenState extends State<SplashScreen> {
         );
       }
     });
-    super.initState();
   }
 
   @override
