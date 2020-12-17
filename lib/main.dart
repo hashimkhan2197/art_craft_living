@@ -6,7 +6,6 @@ import 'package:artcraftliving/constant.dart';
 import 'package:artcraftliving/home_screen.dart';
 import 'package:artcraftliving/login/buyapp.dart';
 import 'package:artcraftliving/login/forgot_password.dart';
-import 'package:artcraftliving/login/inapp_payment_provider.dart';
 import 'package:artcraftliving/login/login.dart';
 import 'package:artcraftliving/login/sign_up.dart';
 import 'package:artcraftliving/menu/collected_points.dart';
@@ -26,6 +25,8 @@ import 'package:artcraftliving/uplaod_art.dart';
 import 'package:flutter/material.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:provider/provider.dart';
+
+import 'login/inapp_payment_provider.dart';
 
 void main() {
   InAppPurchaseConnection.enablePendingPurchases();

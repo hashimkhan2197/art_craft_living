@@ -81,88 +81,92 @@ class _UserProfileState extends State<UserProfile> {
                       radius: 40,
                     ),
                     SizedBox(width: 20),
-                    ExpandableText(
-                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque scelerisque efficitur posuere. Curabitur tincidunt placerat diam ac efficitur. Cras rutrum egestas nisl vitae pulvinar. Donec id mollis diam, id hendrerit neque. Donec accumsan efficitur libero, vitae feugiat odio fringilla ac. Aliquam a turpis bibendum, varius erat dictum, feugiat libero. Nam et dignissim nibh. Morbi elementum varius elit, at dignissim ex accumsan a',
-                      trimLines: 2,
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          listUserDetail[userIndex].username,
+                          style: TextStyle(fontSize: 22),
+                        ),
+                        if (_showabout)
+                          Column(
+                            children: [
+                              SingleChildScrollView(
+                                child: Center(
+                                  child: SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width - 200,
+                                    height: 100,
+                                    child: AutoSizeText(
+                                      listUserDetail[userIndex].about,
+                                      style: TextStyle(fontSize: 18.0),
+                                      maxLines: 100,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    _showabout = false;
+                                  });
+                                },
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      'See less',
+                                      style: TextStyle(
+                                          color: Colors.grey,
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Icon(
+                                      Icons.arrow_drop_up,
+                                      color: Colors.grey,
+                                    )
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ///Alaka da condition try ka
+                        ///da lg check ka che on average yo line k smra characters razi bia dase 1.5 lines wala total wakhla
+                        ///aw ka string aghe na ghat v no da seemore ba show kegi aw ka wrkote v no nu ba show kegi
+                        ///nor kho tu bia ui set kule she
+                        ///if(!_showabout && listUserDetail[userIndex].about.length > 80)
+                        if (!_showabout)
+                          Container(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Container(
+                                  width:
+                                      MediaQuery.of(context).size.width - 200,
+                                  child: Text(
+                                    listUserDetail[userIndex].about,
+                                    maxLines: 1,
+                                  ),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      _showabout = true;
+                                    });
+                                  },
+                                  child: Text(
+                                    'See more',
+                                    style: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                      ],
                     ),
-                    // Column(
-                    //   mainAxisAlignment: MainAxisAlignment.start,
-                    //   crossAxisAlignment: CrossAxisAlignment.start,
-                    //   children: [
-                    //     Text(
-                    //       listUserDetail[userIndex].username,
-                    //       style: TextStyle(fontSize: 22),
-                    //     ),
-                    //     if (_showabout)
-                    //       Column(
-                    //         children: [
-                    //           SingleChildScrollView(
-                    //             child: Center(
-                    //               child: SizedBox(
-                    //                 width:
-                    //                     MediaQuery.of(context).size.width - 200,
-                    //                 height: 100,
-                    //                 child: AutoSizeText(
-                    //                   listUserDetail[userIndex].about,
-                    //                   style: TextStyle(fontSize: 18.0),
-                    //                   maxLines: 100,
-                    //                 ),
-                    //               ),
-                    //             ),
-                    //           ),
-                    //           InkWell(
-                    //             onTap: () {
-                    //               setState(() {
-                    //                 _showabout = false;
-                    //               });
-                    //             },
-                    //             child: Row(
-                    //               children: [
-                    //                 Text(
-                    //                   'See less',
-                    //                   style: TextStyle(
-                    //                       color: Colors.grey,
-                    //                       fontSize: 13,
-                    //                       fontWeight: FontWeight.bold),
-                    //                 ),
-                    //                 Icon(
-                    //                   Icons.arrow_drop_up,
-                    //                   color: Colors.grey,
-                    //                 )
-                    //               ],
-                    //             ),
-                    //           )
-                    //         ],
-                    //       ),
-                    //     if (!_showabout)
-                    //       Row(
-                    //         mainAxisAlignment: MainAxisAlignment.start,
-                    //         children: [
-                    //           Container(
-                    //             width: MediaQuery.of(context).size.width - 200,
-                    //             child: Text(
-                    //               listUserDetail[userIndex].about,
-                    //               maxLines: 1,
-                    //             ),
-                    //           ),
-                    //           InkWell(
-                    //             onTap: () {
-                    //               setState(() {
-                    //                 _showabout = true;
-                    //               });
-                    //             },
-                    //             child: Text(
-                    //               'See more',
-                    //               style: TextStyle(
-                    //                   color: Colors.grey,
-                    //                   fontSize: 13,
-                    //                   fontWeight: FontWeight.bold),
-                    //             ),
-                    //           )
-                    //         ],
-                    //       ),
-                    //   ],
-                    // ),
                   ],
                 ),
                 FlatButton(
